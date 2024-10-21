@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>New Post</title>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+	crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/profile.css}">
+	
+</head>
+<body>
+<nav th:replace="home::navbar">
+
+</nav>
+
+	<div class="container mt-5">
+		<h2 class="mb-4">Edit Caption</h2>
+		<form action="#" id="profileForm" th:action="@{/updatepost}" method="post"
+			th:object="${post}">
+			<input type="hidden" th:field="*{id}">
+			<div class="mb-3">
+				<label for="caption" class="form-label">Caption</label>
+				<textarea id="caption" name="caption" class="form-control"
+					th:placeholder="${post.caption}" rows="4" required></textarea>
+			</div>
+
+			<button type="submit" class="btn btn-primary">Edit POST</button>
+		</form>
+	</div>
+
+	<script
+		src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+		integrity="sha384-IQsoLXlDZt7y6aVzfwRLmbU6B1kPp4tW1KU/t7PbIjHBZT4Ibx6GXlXt3BYgT9L2"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+		integrity="sha384-cVKIPhG81r6w33PvC0ynfW4pka/q5zY9bD1O9VjsKcpsUp33js8fQH6FcUGx3BYg"
+		crossorigin="anonymous"></script>
+</body>
+</html>

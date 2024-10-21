@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>View posts</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/profile.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}">
+</head>
+<body>
+	<nav style="margin: 20px">
+		<div class="post-header">
+			<div class="profile-pic">
+				<img th:if="${user.photoBase64}"
+					th:src="'data:image/jpeg;base64,' + ${user.photoBase64}"
+					alt="User Photo" />
+			</div>
+			<span class="username" th:text="${user.username}">Unknown</span>
+		</div>
+
+		<a href="/goHome">News feed</a> <a href="/post">Create post</a> <a
+			href="/myprofile">My profile</a> <a href="/logout">Logout</a>
+	</nav>
+
+	<div class="posts-container">
+		<span th:each="post:${user.posts}">
+			<div class="post-card">
+				<div class="post-header">
+					<div class="profile-pic">
+						<a th:href="@{/profile/{id}(id=${post.user.id})}"> <img
+							th:if="${post.user.photoBase64}"
+							th:src="'data:image/jpeg;base64,' + ${post.user.photoBase64}"
+							alt="User Photo" /></a>
+					</div>
+					<span class="username" th:text="${post.user.username}">Unknown</span>
+				</div>
+				<div class="post-image">
+					<img th:if="${post.photoBase64}"
+						th:src="'data:image/jpeg;base64,' + ${post.photoBase64}"
+						alt="Post Photo" />
+				</div>
+
+				<!-- Caption -->
+				<p class="caption">
+					<span th:text="${post.caption}"></span>
+				</p>
+
+				<!-- Likes -->
+				<p class="likes">
+					<strong>Likes:</strong> <span th:text="${post.likes}"></span>
+				</p>
+
+				<!-- Like form -->
+				<form action="/likePost" method="post" class="like-form">
+					<input type="hidden" name="id" th:value="${post.id}"> <input
+						type="submit" value="LIKE POST">
+				</form>
+
+				<!-- Comment form -->
+				<form action="/addComment" method="post" class="comment-form">
+					<input type="hidden" name="id" th:value="${post.id}">
+					<textarea name="comments" placeholder="Add a comment..." required></textarea>
+					<input type="submit" value="Comment">
+				</form>
+
+				<!-- Displaying Comments -->
+				<div class="comments-section">
+					<h4>Comments:</h4>
+					<ul>
+						<li th:each="comment : ${post.comments}"><span
+							th:text="${comment}"></span></li>
+					</ul>
+				</div >
+				
+				<div class="three-dot-menu">
+					<div class="dots">
+						<span></span> <span></span> <span></span>
+					</div>
+					<div class="dropdown-menu">
+				          <button><a th:href="@{/editpost/{id}(id=${post.id})}">Edit</a></button>
+				          <button><a th:href="@{/deletepost/{id}(id=${post.id})}">Delete</a></button>
+				    </div>
+				</div>
+				
+			</div>
+		</span>
+	</div>
+	<script type="text/javascript" th:src="@{script/profile.js}"></script>
+</body>
+</html>

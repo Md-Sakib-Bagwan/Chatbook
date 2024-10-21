@@ -1,0 +1,84 @@
+
+/* Container for the three-dot menu */
+.three-dot-menu {
+    position: absolute;
+    top: 10px; /* Adjust this value based on your design */
+    right: 10px; /* Adjust this value based on your design */
+    cursor: pointer;
+}
+
+/* Style for the dots */
+.three-dot-menu .dots {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 20px; /* Adjust height to space out dots */
+}
+
+.three-dot-menu .dots span {
+   width: 5px;
+    height: 5px;
+    background-color: black;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+/* Initially hide the dropdown menu */
+.three-dot-menu .dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 20px;
+    right: 0;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 1);
+    z-index: 1000;
+}
+
+/* Show dropdown menu on hover or click */
+.three-dot-menu:hover .dropdown-menu,
+.three-dot-menu:focus .dropdown-menu {
+    display: block;
+}
+
+/* Style for dropdown buttons */
+.three-dot-menu .dropdown-menu button {
+    display: block;
+    background: none;
+    background-color: gray;
+    padding: 10px 20px;
+    border: none;
+    width: 80%;
+    padding: 10px 20px;
+    text-align: left;
+    font-size: 14px;
+    cursor: pointer;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.three-dot-menu .dropdown-menu button:hover {
+    background-color: red;
+}
+
+/* Style the anchor links inside the buttons */
+.three-dot-menu .dropdown-menu a {
+    text-decoration: none;
+    color: #333;
+}
+
+.three-dot-menu .dropdown-menu a:hover {
+    color: #007bff;
+}
+
+/* Post card container should have position relative for absolute positioning of menu */
+.post-card {
+    position: relative;
+    padding: 20px;
+    border: 1px solid #ddd;
+    margin-bottom: 20px;
+    border-radius: 8px;
+}
+
+
+
